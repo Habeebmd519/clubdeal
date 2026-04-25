@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "296576008071",
+    "project_id": "clubdealdb",
+    "storage_bucket": "clubdealdb.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:296576008071:android:f22f94f032018713669d22",
+        "android_client_info": {
+          "package_name": "com.example.clubdeal"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB80bN0YCTa9zAywGuZsuvP5VduLdreKnU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
