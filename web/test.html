@@ -1,0 +1,1475 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Club Deal — Loaded & Fired Up</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:ital,wght@1,700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --red: #D85A30;
+            --red-dark: #993C1D;
+            --red-light: #FAECE7;
+            --amber: #EF9F27;
+            --amber-dark: #854F0B;
+            --cream: #FAF7F0;
+            --charcoal: #1A1A18;
+            --charcoal-mid: #2E2E2A;
+            --text-muted: #888780;
+            --border: rgba(255, 255, 255, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--charcoal);
+            color: #fff;
+            overflow-x: hidden;
+            cursor: default;
+        }
+
+        /* ── NOISE TEXTURE ── */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.6;
+        }
+
+        /* ── NAVBAR ── */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1.2rem 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(26, 26, 24, 0.85);
+            backdrop-filter: blur(16px);
+            border-bottom: 0.5px solid var(--border);
+            animation: slideDown 0.6s ease both;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .nav-logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2rem;
+            letter-spacing: 3px;
+            color: var(--amber);
+            text-decoration: none;
+        }
+
+        .nav-logo span {
+            color: #fff;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.65);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--amber);
+        }
+
+        .nav-cart {
+            background: var(--red);
+            color: #fff;
+            border: none;
+            padding: 0.6rem 1.4rem;
+            border-radius: 50px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.15s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-cart:hover {
+            background: var(--red-dark);
+            transform: scale(1.04);
+        }
+
+        .cart-count {
+            background: var(--amber);
+            color: var(--charcoal);
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.72rem;
+            font-weight: 700;
+        }
+
+        /* ── HERO ── */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            padding: 6rem 2rem 4rem;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(216, 90, 48, 0.18) 0%, transparent 70%),
+                radial-gradient(ellipse 60% 40% at 80% 80%, rgba(239, 159, 39, 0.1) 0%, transparent 60%);
+        }
+
+        .hero-tag {
+            display: inline-block;
+            background: rgba(239, 159, 39, 0.12);
+            border: 0.5px solid rgba(239, 159, 39, 0.4);
+            color: var(--amber);
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            padding: 0.45rem 1.2rem;
+            border-radius: 50px;
+            margin-bottom: 2rem;
+            animation: fadeUp 0.8s 0.2s ease both;
+        }
+
+        .hero-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(5rem, 15vw, 11rem);
+            line-height: 0.88;
+            letter-spacing: 4px;
+            animation: fadeUp 0.8s 0.35s ease both;
+        }
+
+        .hero-title .accent {
+            color: var(--red);
+            display: block;
+        }
+
+        .hero-title .accent2 {
+            color: var(--amber);
+            display: block;
+        }
+
+        .hero-sub {
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, 0.55);
+            max-width: 460px;
+            line-height: 1.7;
+            margin: 2rem auto 3rem;
+            animation: fadeUp 0.8s 0.5s ease both;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            animation: fadeUp 0.8s 0.65s ease both;
+        }
+
+        .btn-primary {
+            background: var(--red);
+            color: #fff;
+            border: none;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, background 0.2s;
+            text-decoration: none;
+        }
+
+        .btn-primary:hover {
+            background: var(--red-dark);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #fff;
+            border: 0.5px solid rgba(255, 255, 255, 0.3);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: border-color 0.2s, background 0.2s;
+            text-decoration: none;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--amber);
+            color: var(--amber);
+            background: rgba(239, 159, 39, 0.06);
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(32px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-scroll {
+            position: absolute;
+            bottom: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 0.72rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            animation: fadeUp 1s 1s ease both;
+        }
+
+        .scroll-line {
+            width: 1px;
+            height: 50px;
+            background: linear-gradient(to bottom, var(--amber), transparent);
+            animation: scrollAnim 2s ease-in-out infinite;
+        }
+
+        @keyframes scrollAnim {
+
+            0%,
+            100% {
+                transform: scaleY(0);
+                transform-origin: top;
+            }
+
+            50% {
+                transform: scaleY(1);
+                transform-origin: top;
+            }
+        }
+
+        /* ── FLOATING ORBS ── */
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            pointer-events: none;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .orb1 {
+            width: 400px;
+            height: 400px;
+            background: rgba(216, 90, 48, 0.12);
+            top: -100px;
+            right: -100px;
+            animation-delay: 0s;
+        }
+
+        .orb2 {
+            width: 300px;
+            height: 300px;
+            background: rgba(239, 159, 39, 0.08);
+            bottom: 0;
+            left: -80px;
+            animation-delay: -3s;
+        }
+
+        .orb3 {
+            width: 200px;
+            height: 200px;
+            background: rgba(216, 90, 48, 0.08);
+            top: 40%;
+            left: 10%;
+            animation-delay: -5s;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0) scale(1);
+            }
+
+            50% {
+                transform: translateY(-30px) scale(1.05);
+            }
+        }
+
+        /* ── SECTION HEADERS ── */
+        .section-wrap {
+            padding: 5rem 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-tag {
+            color: var(--amber);
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 0.8rem;
+        }
+
+        .section-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(2.8rem, 6vw, 5rem);
+            line-height: 1;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-title span {
+            color: var(--red);
+        }
+
+        /* ── CATEGORIES ── */
+        .categories-bar {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            margin: 2.5rem 0;
+        }
+
+        .cat-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 0.5px solid rgba(255, 255, 255, 0.12);
+            color: rgba(255, 255, 255, 0.6);
+            padding: 0.55rem 1.4rem;
+            border-radius: 50px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            letter-spacing: 0.5px;
+        }
+
+        .cat-btn:hover,
+        .cat-btn.active {
+            background: var(--red);
+            border-color: var(--red);
+            color: #fff;
+            transform: translateY(-1px);
+        }
+
+        /* ── MENU GRID ── */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .menu-card {
+            background: var(--charcoal-mid);
+            border: 0.5px solid rgba(255, 255, 255, 0.07);
+            border-radius: 20px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+            animation: cardReveal 0.5s ease both;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(216, 90, 48, 0.4);
+            box-shadow: 0 20px 60px rgba(216, 90, 48, 0.15);
+        }
+
+        @keyframes cardReveal {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card-img {
+            width: 100%;
+            height: 190px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            background: linear-gradient(135deg, rgba(216, 90, 48, 0.12), rgba(239, 159, 39, 0.08));
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-img::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, transparent 50%, rgba(46, 46, 42, 0.6));
+        }
+
+        .card-emoji {
+            font-size: 4.5rem;
+            transition: transform 0.3s;
+            filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.4));
+        }
+
+        .menu-card:hover .card-emoji {
+            transform: scale(1.12) rotate(-5deg);
+        }
+
+        .badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: var(--red);
+            color: #fff;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 3px 10px;
+            border-radius: 50px;
+            z-index: 2;
+        }
+
+        .badge.spicy {
+            background: #A32D2D;
+        }
+
+        .badge.new {
+            background: var(--amber);
+            color: var(--charcoal);
+        }
+
+        .card-body {
+            padding: 1.2rem 1.3rem 1.4rem;
+        }
+
+        .card-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.35rem;
+            line-height: 1.3;
+        }
+
+        .card-desc {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .card-price {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.6rem;
+            color: var(--amber);
+            letter-spacing: 1px;
+        }
+
+        .card-price span {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-family: 'DM Sans';
+            font-weight: 400;
+        }
+
+        .add-btn {
+            background: var(--red);
+            border: none;
+            color: #fff;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 1.4rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s, transform 0.15s;
+            line-height: 1;
+        }
+
+        .add-btn:hover {
+            background: var(--red-dark);
+            transform: scale(1.1) rotate(90deg);
+        }
+
+        .add-btn.added {
+            background: #3B6D11;
+            animation: pop 0.3s ease;
+        }
+
+        @keyframes pop {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.35);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* ── DIVIDER ── */
+        .divider {
+            height: 0.5px;
+            background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.08), transparent);
+            margin: 0 3rem;
+        }
+
+        /* ── CART PANEL ── */
+        .cart-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 2000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+            backdrop-filter: blur(4px);
+        }
+
+        .cart-overlay.open {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .cart-panel {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 420px;
+            background: #1E1E1C;
+            border-left: 0.5px solid rgba(255, 255, 255, 0.08);
+            z-index: 2001;
+            display: flex;
+            flex-direction: column;
+            transform: translateX(100%);
+            transition: transform 0.4s cubic-bezier(0.32, 0.72, 0, 1);
+            overflow: hidden;
+        }
+
+        .cart-panel.open {
+            transform: translateX(0);
+        }
+
+        .cart-header {
+            padding: 1.5rem 1.8rem;
+            border-bottom: 0.5px solid rgba(255, 255, 255, 0.07);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .cart-header h2 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.8rem;
+            letter-spacing: 2px;
+        }
+
+        .close-btn {
+            background: rgba(255, 255, 255, 0.07);
+            border: none;
+            color: #fff;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .close-btn:hover {
+            background: rgba(255, 255, 255, 0.14);
+        }
+
+        .cart-items {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1.2rem 1.8rem;
+        }
+
+        .cart-items::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .cart-items::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .cart-items::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 2px;
+        }
+
+        .cart-empty {
+            text-align: center;
+            padding: 3rem 0;
+            color: var(--text-muted);
+        }
+
+        .cart-empty .empty-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.9rem 0;
+            border-bottom: 0.5px solid rgba(255, 255, 255, 0.06);
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .ci-icon {
+            font-size: 2.2rem;
+            min-width: 44px;
+            text-align: center;
+        }
+
+        .ci-info {
+            flex: 1;
+        }
+
+        .ci-name {
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 3px;
+        }
+
+        .ci-price {
+            font-size: 0.8rem;
+            color: var(--amber);
+            font-weight: 600;
+        }
+
+        .ci-qty {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .qty-btn {
+            background: rgba(255, 255, 255, 0.07);
+            border: none;
+            color: #fff;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.15s;
+        }
+
+        .qty-btn:hover {
+            background: var(--red);
+        }
+
+        .qty-num {
+            font-size: 0.9rem;
+            font-weight: 600;
+            min-width: 16px;
+            text-align: center;
+        }
+
+        /* ── ORDER FORM ── */
+        .cart-footer {
+            padding: 1.5rem 1.8rem;
+            border-top: 0.5px solid rgba(255, 255, 255, 0.07);
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 1.2rem;
+        }
+
+        .cart-total span:first-child {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .total-amt {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2rem;
+            color: var(--amber);
+        }
+
+        .order-form-toggle {
+            width: 100%;
+            background: var(--red);
+            border: none;
+            color: #fff;
+            padding: 1rem;
+            border-radius: 12px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+            letter-spacing: 0.5px;
+        }
+
+        .order-form-toggle:hover {
+            background: var(--red-dark);
+        }
+
+        .order-form {
+            margin-top: 1rem;
+            display: none;
+        }
+
+        .order-form.visible {
+            display: block;
+        }
+
+        .form-row {
+            margin-bottom: 0.8rem;
+        }
+
+        .form-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 0.4rem;
+            display: block;
+        }
+
+        .form-input {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 0.5px solid rgba(255, 255, 255, 0.12);
+            color: #fff;
+            padding: 0.7rem 1rem;
+            border-radius: 10px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.9rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .form-input:focus {
+            border-color: var(--amber);
+        }
+
+        .form-input::placeholder {
+            color: rgba(255, 255, 255, 0.25);
+        }
+
+        .place-order-btn {
+            width: 100%;
+            background: linear-gradient(135deg, var(--amber), #BA7517);
+            border: none;
+            color: var(--charcoal);
+            padding: 1.1rem;
+            border-radius: 12px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 0.8rem;
+            transition: transform 0.2s, opacity 0.2s;
+            letter-spacing: 0.5px;
+        }
+
+        .place-order-btn:hover {
+            transform: translateY(-1px);
+            opacity: 0.92;
+        }
+
+        /* ── SUCCESS TOAST ── */
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(120%);
+            background: #27500A;
+            border: 0.5px solid #3B6D11;
+            color: #C0DD97;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            z-index: 9000;
+            transition: transform 0.4s cubic-bezier(0.32, 0.72, 0, 1);
+            white-space: nowrap;
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* ── ABOUT STRIP ── */
+        .about-strip {
+            background: var(--charcoal-mid);
+            border-top: 0.5px solid rgba(255, 255, 255, 0.06);
+            border-bottom: 0.5px solid rgba(255, 255, 255, 0.06);
+            padding: 4rem 3rem;
+        }
+
+        .about-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            letter-spacing: 2px;
+            line-height: 1.05;
+            margin-bottom: 1.2rem;
+        }
+
+        .about-title span {
+            color: var(--red);
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+        }
+
+        .about-text {
+            color: rgba(255, 255, 255, 0.55);
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        .stats-row {
+            display: flex;
+            gap: 2rem;
+            margin-top: 2.5rem;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-num {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.8rem;
+            color: var(--amber);
+            letter-spacing: 2px;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .about-visual {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .feat-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 0.5px solid rgba(255, 255, 255, 0.07);
+            border-radius: 16px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .feat-card:hover {
+            background: rgba(216, 90, 48, 0.08);
+            transform: translateY(-4px);
+        }
+
+        .feat-card .icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.7rem;
+            display: block;
+        }
+
+        .feat-card h4 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .feat-card p {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* ── FOOTER ── */
+        footer {
+            padding: 3rem;
+            border-top: 0.5px solid rgba(255, 255, 255, 0.06);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .foot-logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.6rem;
+            letter-spacing: 3px;
+            color: var(--amber);
+        }
+
+        .foot-logo span {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        footer p {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+        /* ── SUCCESS MODAL ── */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.75);
+            z-index: 8000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+            backdrop-filter: blur(6px);
+        }
+
+        .modal-overlay.open {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .modal-box {
+            background: #1E1E1C;
+            border: 0.5px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 3rem 2.5rem;
+            text-align: center;
+            max-width: 380px;
+            width: 90%;
+            transform: scale(0.85);
+            transition: transform 0.35s cubic-bezier(0.32, 0.72, 0, 1);
+        }
+
+        .modal-overlay.open .modal-box {
+            transform: scale(1);
+        }
+
+        .modal-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .modal-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.4rem;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-msg {
+            color: rgba(255, 255, 255, 0.55);
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+
+        .modal-name {
+            color: var(--amber);
+            font-weight: 600;
+        }
+
+        .modal-close {
+            margin-top: 2rem;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem 1.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .section-wrap {
+                padding: 3.5rem 1.5rem;
+            }
+
+            .about-inner {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .about-visual {
+                display: none;
+            }
+
+            .cart-panel {
+                width: 100%;
+            }
+
+            footer {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .hero {
+                padding: 5rem 1.5rem 3rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav>
+        <a href="#" class="nav-logo">CLUB <span>DEAL</span></a>
+        <ul class="nav-links">
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#menu">Order</a></li>
+        </ul>
+        <button class="nav-cart" onclick="toggleCart()">
+            🛒 Cart
+            <span class="cart-count" id="cartCount">0</span>
+        </button>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="orb orb1"></div>
+        <div class="orb orb2"></div>
+        <div class="orb orb3"></div>
+        <div style="position:relative; z-index:1;">
+            <div class="hero-tag">🔥 Hot & Fresh · Everyday</div>
+            <h1 class="hero-title">
+                CLUB
+                <span class="accent">DEAL</span>
+                <span class="accent2"
+                    style="font-size:0.45em; letter-spacing:6px; font-family:'DM Sans'; font-weight:300; color:rgba(255,255,255,0.4);">CAFÉ</span>
+            </h1>
+            <p class="hero-sub">Loaded fries that hit different. Burgers worth the mess. Wraps on lock. This is where
+                the real deal lives.</p>
+            <div class="hero-cta">
+                <a href="#menu" class="btn-primary">Order Now →</a>
+                <a href="#about" class="btn-outline">Our Story</a>
+            </div>
+        </div>
+        <div class="hero-scroll">
+            <div class="scroll-line"></div>
+            scroll
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- MENU -->
+    <section id="menu">
+        <div class="section-wrap">
+            <p class="section-tag">What We Serve</p>
+            <h2 class="section-title">THE <span>MENU</span></h2>
+            <p style="color:rgba(255,255,255,0.45); font-size:0.95rem; margin-top:0.5rem;">Pick your poison. We make it
+                with love (and a lot of oil).</p>
+
+            <div class="categories-bar">
+                <button class="cat-btn active" onclick="filterMenu('all', this)">All Items</button>
+                <button class="cat-btn" onclick="filterMenu('fries', this)">🍟 Fries</button>
+                <button class="cat-btn" onclick="filterMenu('burger', this)">🍔 Burgers</button>
+                <button class="cat-btn" onclick="filterMenu('wrap', this)">🌯 Wraps</button>
+                <button class="cat-btn" onclick="filterMenu('drinks', this)">🥤 Drinks</button>
+            </div>
+
+            <div class="menu-grid" id="menuGrid"></div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ABOUT -->
+    <div class="about-strip" id="about">
+        <div class="about-inner">
+            <div>
+                <p class="section-tag">Our Story</p>
+                <h2 class="about-title">BORN TO BE <span>Different</span></h2>
+                <p class="about-text">Club Deal started with a simple idea — make street food that actually slaps. No
+                    gimmicks, no shortcuts. Just real ingredients, bold flavors, and portions that don't disappoint.
+                    We're here for the fries lovers, the burger obsessives, and everyone in between.</p>
+                <div class="stats-row">
+                    <div class="stat"><span class="stat-num">12+</span><span class="stat-label">Items on menu</span>
+                    </div>
+                    <div class="stat"><span class="stat-num">500+</span><span class="stat-label">Happy customers</span>
+                    </div>
+                    <div class="stat"><span class="stat-num">1</span><span class="stat-label">Goal: Flavor</span></div>
+                </div>
+            </div>
+            <div class="about-visual">
+                <div class="feat-card"><span class="icon">🔥</span>
+                    <h4>Made Fresh</h4>
+                    <p>Every order cooked on the spot</p>
+                </div>
+                <div class="feat-card"><span class="icon">🧀</span>
+                    <h4>Loaded Up</h4>
+                    <p>Extra cheese, toppings, no regrets</p>
+                </div>
+                <div class="feat-card"><span class="icon">⚡</span>
+                    <h4>Fast Service</h4>
+                    <p>In and out in under 15 minutes</p>
+                </div>
+                <div class="feat-card"><span class="icon">❤️</span>
+                    <h4>Made with Love</h4>
+                    <p>Family recipes, real flavors</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="foot-logo">CLUB <span>DEAL</span></div>
+        <p>© 2025 Club Deal Café. All rights reserved.</p>
+        <p style="color:rgba(255,255,255,0.25); font-size:0.75rem;">Serving happiness, one plate at a time.</p>
+    </footer>
+
+    <!-- CART OVERLAY + PANEL -->
+    <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+    <div class="cart-panel" id="cartPanel">
+        <div class="cart-header">
+            <h2>YOUR ORDER</h2>
+            <button class="close-btn" onclick="toggleCart()">✕</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <div class="cart-empty">
+                <span class="empty-icon">🛒</span>
+                <p>Your cart is empty</p>
+                <p style="font-size:0.8rem; margin-top:0.4rem; color:rgba(255,255,255,0.3);">Add items from the menu!
+                </p>
+            </div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total</span>
+                <span class="total-amt" id="totalAmt">₹0</span>
+            </div>
+            <button class="order-form-toggle" id="checkoutBtn" onclick="toggleOrderForm()" disabled
+                style="opacity:0.4; cursor:not-allowed;">
+                Proceed to Checkout →
+            </button>
+            <div class="order-form" id="orderForm">
+                <div class="form-row">
+                    <label class="form-label">Your Name *</label>
+                    <input class="form-input" id="custName" type="text" placeholder="e.g. Arjun Sharma" required>
+                </div>
+                <div class="form-row">
+                    <label class="form-label">Phone Number</label>
+                    <input class="form-input" id="custPhone" type="tel" placeholder="+91 XXXXX XXXXX">
+                </div>
+                <div class="form-row">
+                    <label class="form-label">Special Instructions</label>
+                    <input class="form-input" id="custNote" type="text" placeholder="Extra spicy, no onions…">
+                </div>
+                <button class="place-order-btn" onclick="placeOrder()">🔥 Place My Order</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SUCCESS MODAL -->
+    <div class="modal-overlay" id="successModal">
+        <div class="modal-box">
+            <span class="modal-icon">🎉</span>
+            <h2 class="modal-title">ORDER PLACED!</h2>
+            <p class="modal-msg">Hey <span class="modal-name" id="modalName">—</span>, your order is confirmed! We're
+                cooking it up fresh for you. Get ready to dig in! 🔥</p>
+            <div class="modal-close">
+                <button class="btn-primary" onclick="closeModal()"
+                    style="width:100%; display:block; text-align:center;">Awesome, Thanks!</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOAST -->
+    <div class="toast" id="toast">✅ Item added to cart!</div>
+
+    <script>
+        const MENU = [
+            { id: 1, name: "Classic Loaded Fries", cat: "fries", price: 149, emoji: "🍟", desc: "Crispy fries smothered in cheese sauce, jalapeños & sour cream.", badge: "bestseller" },
+            { id: 2, name: "Masala Loaded Fries", cat: "fries", price: 139, emoji: "🍟", desc: "Desi twist — chaat masala, green chutney & tangy tamarind drizzle.", badge: "spicy" },
+            { id: 3, name: "BBQ Bacon Fries", cat: "fries", price: 179, emoji: "🍟", desc: "Smoky BBQ sauce, crispy bits & onion straws on golden fries.", badge: null },
+            { id: 4, name: "French Fries", cat: "fries", price: 89, emoji: "🍟", desc: "Classic thin-cut golden fries. Simple, perfect, never gets old.", badge: null },
+            { id: 5, name: "Club Deal Burger", cat: "burger", price: 199, emoji: "🍔", desc: "Double patty, special sauce, caramelised onions & cheddar. Our crown jewel.", badge: "bestseller" },
+            { id: 6, name: "Spicy Chicken Burger", cat: "burger", price: 179, emoji: "🍔", desc: "Crispy fried chicken, sriracha mayo & pickled jalapeños.", badge: "spicy" },
+            { id: 7, name: "Veggie Crunch Burger", cat: "burger", price: 149, emoji: "🍔", desc: "Crispy veggie patty, coleslaw, mustard aioli & fresh lettuce.", badge: "new" },
+            { id: 8, name: "Chicken Tikka Wrap", cat: "wrap", price: 159, emoji: "🌯", desc: "Flame-kissed tikka chicken, mint chutney & crunchy onions in a warm paratha.", badge: "bestseller" },
+            { id: 9, name: "Shawarma Style Wrap", cat: "wrap", price: 169, emoji: "🌯", desc: "Tender marinated chicken, garlic sauce, pickles & fries wrapped tight.", badge: null },
+            { id: 10, name: "Paneer Tikka Wrap", cat: "wrap", price: 149, emoji: "🌯", desc: "Smoky paneer, tangy chutney & crispy veggies in a grilled flatbread.", badge: "new" },
+            { id: 11, name: "Cold Coffee", cat: "drinks", price: 79, emoji: "☕", desc: "Thick, rich blended cold coffee. The perfect companion.", badge: null },
+            { id: 12, name: "Mango Fizz", cat: "drinks", price: 69, emoji: "🥭", desc: "Fresh mango pulp with sparkling water & a pinch of chaat masala.", badge: "new" },
+        ];
+
+        let cart = {};
+        let currentFilter = 'all';
+
+        function renderMenu(filter = 'all') {
+            const grid = document.getElementById('menuGrid');
+            const items = filter === 'all' ? MENU : MENU.filter(i => i.cat === filter);
+            grid.innerHTML = '';
+            items.forEach((item, idx) => {
+                const inCart = cart[item.id] > 0;
+                const badgeHtml = item.badge
+                    ? `<span class="badge ${item.badge === 'spicy' ? 'spicy' : item.badge === 'new' ? 'new' : ''}">${item.badge === 'bestseller' ? '⭐ Best Seller' : item.badge === 'spicy' ? '🌶 Spicy' : '✨ New'}</span>`
+                    : '';
+                const card = document.createElement('div');
+                card.className = 'menu-card';
+                card.style.animationDelay = `${idx * 0.06}s`;
+                card.innerHTML = `
+      <div class="card-img">
+        ${badgeHtml}
+        <span class="card-emoji">${item.emoji}</span>
+      </div>
+      <div class="card-body">
+        <h3 class="card-name">${item.name}</h3>
+        <p class="card-desc">${item.desc}</p>
+        <div class="card-footer">
+          <div class="card-price">₹${item.price} <span>/ serving</span></div>
+          <button class="add-btn ${inCart ? 'added' : ''}" id="btn-${item.id}" onclick="addToCart(${item.id})" title="Add to cart">
+            ${inCart ? '✓' : '+'}
+          </button>
+        </div>
+      </div>`;
+                grid.appendChild(card);
+            });
+        }
+
+        function filterMenu(cat, el) {
+            currentFilter = cat;
+            document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+            el.classList.add('active');
+            renderMenu(cat);
+        }
+
+        function addToCart(id) {
+            cart[id] = (cart[id] || 0) + 1;
+            updateCartUI();
+            showToast('Item added to cart! 🔥');
+            const btn = document.getElementById(`btn-${id}`);
+            if (btn) { btn.classList.add('added'); btn.textContent = '✓'; }
+        }
+
+        function updateCartUI() {
+            const total = Object.entries(cart).reduce((sum, [id, qty]) => sum + MENU.find(i => i.id == id).price * qty, 0);
+            const count = Object.values(cart).reduce((a, b) => a + b, 0);
+            document.getElementById('cartCount').textContent = count;
+            document.getElementById('totalAmt').textContent = `₹${total}`;
+
+            const checkoutBtn = document.getElementById('checkoutBtn');
+            if (count > 0) {
+                checkoutBtn.disabled = false;
+                checkoutBtn.style.opacity = '1';
+                checkoutBtn.style.cursor = 'pointer';
+            } else {
+                checkoutBtn.disabled = true;
+                checkoutBtn.style.opacity = '0.4';
+                checkoutBtn.style.cursor = 'not-allowed';
+            }
+
+            const container = document.getElementById('cartItems');
+            if (count === 0) {
+                container.innerHTML = `<div class="cart-empty"><span class="empty-icon">🛒</span><p>Your cart is empty</p><p style="font-size:0.8rem; margin-top:0.4rem; color:rgba(255,255,255,0.3);">Add items from the menu!</p></div>`;
+                return;
+            }
+
+            container.innerHTML = '';
+            Object.entries(cart).forEach(([id, qty]) => {
+                if (qty < 1) return;
+                const item = MENU.find(i => i.id == id);
+                const row = document.createElement('div');
+                row.className = 'cart-item';
+                row.innerHTML = `
+      <span class="ci-icon">${item.emoji}</span>
+      <div class="ci-info">
+        <p class="ci-name">${item.name}</p>
+        <p class="ci-price">₹${item.price} × ${qty} = ₹${item.price * qty}</p>
+      </div>
+      <div class="ci-qty">
+        <button class="qty-btn" onclick="changeQty(${id}, -1)">−</button>
+        <span class="qty-num">${qty}</span>
+        <button class="qty-btn" onclick="changeQty(${id}, 1)">+</button>
+      </div>`;
+                container.appendChild(row);
+            });
+        }
+
+        function changeQty(id, delta) {
+            cart[id] = Math.max(0, (cart[id] || 0) + delta);
+            if (cart[id] === 0) delete cart[id];
+            updateCartUI();
+            const btn = document.getElementById(`btn-${id}`);
+            if (btn) {
+                const inCart = (cart[id] || 0) > 0;
+                btn.classList.toggle('added', inCart);
+                btn.textContent = inCart ? '✓' : '+';
+            }
+        }
+
+        function toggleCart() {
+            document.getElementById('cartPanel').classList.toggle('open');
+            document.getElementById('cartOverlay').classList.toggle('open');
+        }
+
+        let formVisible = false;
+        function toggleOrderForm() {
+            if (Object.keys(cart).length === 0) return;
+            formVisible = !formVisible;
+            const f = document.getElementById('orderForm');
+            f.classList.toggle('visible', formVisible);
+            document.getElementById('checkoutBtn').textContent = formVisible ? '← Back' : 'Proceed to Checkout →';
+        }
+
+        function placeOrder() {
+            const name = document.getElementById('custName').value.trim();
+            if (!name) {
+                document.getElementById('custName').focus();
+                document.getElementById('custName').style.borderColor = '#D85A30';
+                setTimeout(() => document.getElementById('custName').style.borderColor = '', 1500);
+                return;
+            }
+            document.getElementById('modalName').textContent = name;
+            document.getElementById('successModal').classList.add('open');
+            cart = {};
+            updateCartUI();
+            document.getElementById('cartPanel').classList.remove('open');
+            document.getElementById('cartOverlay').classList.remove('open');
+            document.getElementById('orderForm').classList.remove('visible');
+            formVisible = false;
+            document.getElementById('checkoutBtn').textContent = 'Proceed to Checkout →';
+            document.getElementById('custName').value = '';
+            document.getElementById('custPhone').value = '';
+            document.getElementById('custNote').value = '';
+            renderMenu(currentFilter);
+        }
+
+        function closeModal() {
+            document.getElementById('successModal').classList.remove('open');
+        }
+
+        let toastTimer;
+        function showToast(msg) {
+            const t = document.getElementById('toast');
+            t.textContent = msg;
+            t.classList.add('show');
+            clearTimeout(toastTimer);
+            toastTimer = setTimeout(() => t.classList.remove('show'), 2500);
+        }
+
+        // Init
+        renderMenu('all');
+
+        // Scroll reveal
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.style.opacity = '1'; });
+        }, { threshold: 0.1 });
+    </script>
+</body>
+
+</html>
